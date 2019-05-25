@@ -1,0 +1,72 @@
+-- Utility to replace chars in texts
+on replace_chars(this_text, search_string, replacement_string)
+	set AppleScript's text item delimiters to the search_string
+	set the item_list to every text item of this_text
+	set AppleScript's text item delimiters to the replacement_string
+	set this_text to the item_list as string
+	set AppleScript's text item delimiters to ""
+	return this_text
+end replace_chars
+property isScriptMounting : false
+
+on run {input, parameters}
+	-- vars and messages
+	set lastVolumeAdded to replace_chars(input as string, ":" as string, "" as string)
+	set messageTitle to "🧙‍♂️ NTFS writable utility"
+	set askMakeWritable to "✨Do you want to make disc " & lastVolumeAdded & " writable?✨"
+	set confirmationSubtitle to "Hahahaha 👹"
+	set confirmationMessage to "Now you can write into " & lastVolumeAdded & " volume"
+	set fstabSpace to "\\\\\\\\040"
+	set spacing to " "
+	set fstabVolumeName to replace_chars(lastVolumeAdded as string, spacing, fstabSpace)
+	
+	-- Execute the diskutil info command on the new volume and get the value of the property FilesystemType in the xml plist returned to know the type
+	set diskType to do shell script "diskutil info -plist '" & lastVolumeAdded & "' | grep -A 1 'FilesystemType' | sed -n \"s@.*<string>\\(.*\\)</string>.*@\\1@p\""
+	if diskType is "ntfs" then
+		try
+			set response to do shell script "grep " & fstabVolumeName & " /etc/fstab | sed"
+			
+			if response is "" then
+				-- asking user to make volume writable
+				set alertReply to display dialog askMakeWritable with title messageTitle buttons ["Read Only", "Writable"] default button 2
+				if button returned of alertReply is equal to "Writable" then
+					-- Volume label is not in fstab file: writing, unmounting/mounting and opening volumes folder to see it in writable mode
+					do shell script "echo LABEL=" & fstabVolumeName & " none ntfs rw,auto,nobrowse >> /etc/fstab" with administrator privileges
+					do shell script "diskutil unmount '" & lastVolumeAdded & "'" with administrator privileges
+					set isScriptMounting to true
+					do shell script "diskutil mount '" & lastVolumeAdded & "'" with administrator privileges
+					display notification confirmationMessage with title messageTitle subtitle confirmationSubtitle
+					tell application "Finder"
+						activate
+						open ("/Volumes" as POSIX file)
+						delay 0.1
+						set target of front window to ("/Volumes/" & lastVolumeAdded as POSIX file)
+					end tell
+				end if
+				return
+			else
+				--if isScriptMounting is false then
+				-- Volume is already in fstab, so we just open volumes folder and volumes/lastVolumeAdded folder to get the back button of finder enabled to go back to Volume
+				tell application "Finder"
+					delay 0.5
+					open ("/Volumes" as POSIX file)
+					delay 0.1
+					activate
+					set target of front window to ("/Volumes/" & lastVolumeAdded as POSIX file)
+				end tell
+				--else
+				--	set isScriptMounting to false
+				--end if
+				return
+				
+			end if
+			-- some ntfs drives give error when mounting I think related to the fact that they are MBR instead of GPT
+			-- https://www.howtogeek.com/193669/whats-the-difference-between-gpt-and-mbr-when-partitioning-a-drive/
+		on error errmsg number errnr
+			display notification errmsg with title messageTitle subtitle "error trying to make writable " & lastVolumeAdded & " volume"
+		end try
+	else
+		-- display notification "Not an NTFS volume 🤭" with title messageTitle
+	end if
+	
+end run

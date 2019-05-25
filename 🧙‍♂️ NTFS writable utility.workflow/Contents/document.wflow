@@ -1,126 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-	<key>AMApplicationBuild</key>
-	<string>444.39</string>
-	<key>AMApplicationVersion</key>
-	<string>2.9</string>
-	<key>AMDocumentVersion</key>
-	<string>2</string>
-	<key>actions</key>
-	<array>
-		<dict>
-			<key>action</key>
-			<dict>
-				<key>AMAccepts</key>
-				<dict>
-					<key>Container</key>
-					<string>List</string>
-					<key>Optional</key>
-					<true/>
-					<key>Types</key>
-					<array>
-						<string>com.apple.applescript.object</string>
-					</array>
-				</dict>
-				<key>AMActionVersion</key>
-				<string>1.0.2</string>
-				<key>AMApplication</key>
-				<array>
-					<string>Automator</string>
-				</array>
-				<key>AMParameterProperties</key>
-				<dict>
-					<key>source</key>
-					<dict/>
-				</dict>
-				<key>AMProvides</key>
-				<dict>
-					<key>Container</key>
-					<string>List</string>
-					<key>Types</key>
-					<array>
-						<string>com.apple.applescript.object</string>
-					</array>
-				</dict>
-				<key>ActionBundlePath</key>
-				<string>/System/Library/Automator/Run AppleScript.action</string>
-				<key>ActionName</key>
-				<string>Ejecutar AppleScript</string>
-				<key>ActionParameters</key>
-				<dict>
-					<key>source</key>
-					<string>on replace_chars(this_text, search_string, replacement_string)	set AppleScript's text item delimiters to the search_string	set the item_list to every text item of this_text	set AppleScript's text item delimiters to the replacement_string	set this_text to the item_list as string	set AppleScript's text item delimiters to ""	return this_textend replace_charson run {input, parameters}		try		-- do shell script "echo 'diskutil list | grep -F -f  &lt;\\(ls -t /Volumes | head -n1\\) | grep Windows_NTFS'"		set lastVolumeAdded to do shell script "ls -t /Volumes | head -n1"		do shell script "diskutil list | grep 'Windows_NTFS " &amp; lastVolumeAdded &amp; "'"	on error errmsg number errnr		display notification "It seems that the disk is not NTFS" with title "🧙‍♂️ NTFS writable utility"	end try			if lastVolumeAdded is not false then				set slash to do shell script "printf '\\\\\\'"		set spacing to do shell script "printf ' '"		set tempo to replace_chars(lastVolumeAdded as string, spacing as string, slash &amp; slash &amp; "040" as string)		try			do shell script "grep " &amp; tempo &amp; " /etc/fstab"			display dialog "It seems that the NTFS disk is already included in fstabOpening volumes folder...click cancel to do nothing" with title "🧙‍♂️ NTFS writable utility" giving up after 6			do shell script "open /Volumes"		on error errmsg number errnr			do shell script "echo " &amp; errnr			-- Volume label is not in fstab file, writing, unmounting/mounting and opening volumes folder to see it in writable mode			if errnr = 2 or errnr = 1 then				display dialog "Volume " &amp; lastVolumeAdded &amp; " is NTFSDo you want to make it writable and open Volumes folder" with title "🧙‍♂️ NTFS writable utility"				do shell script "echo LABEL=" &amp; tempo &amp; " none ntfs rw,auto,nobrowse &gt;&gt; /etc/fstab" with administrator privileges				do shell script "diskutil unmountDisk \"" &amp; lastVolumeAdded &amp; "\""				do shell script "diskutil mountDisk \"" &amp; lastVolumeAdded &amp; "\""				do shell script "open /Volumes"				display notification "Now you can write into " &amp; lastVolumeAdded &amp; " volume" with title "🧙‍♂️ NTFS writable utility" subtitle "Hahahaha 👹"				return			else				do shell script "echo 'error ocurred: '" &amp; errmsg &amp; " " &amp; errnr			end if					end try	else		display notification "Not an NTFS volume 🤭" with title "🧙‍♂️ NTFS writable utility"	end if	end run</string>
-				</dict>
-				<key>BundleIdentifier</key>
-				<string>com.apple.Automator.RunScript</string>
-				<key>CFBundleVersion</key>
-				<string>1.0.2</string>
-				<key>CanShowSelectedItemsWhenRun</key>
-				<false/>
-				<key>CanShowWhenRun</key>
-				<true/>
-				<key>Category</key>
-				<array>
-					<string>AMCategoryUtilities</string>
-				</array>
-				<key>Class Name</key>
-				<string>RunScriptAction</string>
-				<key>InputUUID</key>
-				<string>096CBCE3-B709-4C5A-AEA5-E6CE6882CF82</string>
-				<key>Keywords</key>
-				<array>
-					<string>Ejecutar</string>
-				</array>
-				<key>OutputUUID</key>
-				<string>D1B77720-BE62-4131-8BEE-711C1352FF84</string>
-				<key>UUID</key>
-				<string>36C502FF-C0CE-441C-8015-024941D76770</string>
-				<key>UnlocalizedApplications</key>
-				<array>
-					<string>Automator</string>
-				</array>
-				<key>arguments</key>
-				<dict>
-					<key>0</key>
-					<dict>
-						<key>default value</key>
-						<string>on run {input, parameters}
-	
-	(* Your script goes here *)
-	
-	return input
-end run</string>
-						<key>name</key>
-						<string>source</string>
-						<key>required</key>
-						<string>0</string>
-						<key>type</key>
-						<string>0</string>
-						<key>uuid</key>
-						<string>0</string>
-					</dict>
-				</dict>
-				<key>isViewVisible</key>
-				<true/>
-				<key>location</key>
-				<string>458.500000:315.000000</string>
-				<key>nibPath</key>
-				<string>/System/Library/Automator/Run AppleScript.action/Contents/Resources/Base.lproj/main.nib</string>
-			</dict>
-			<key>isViewVisible</key>
-			<true/>
-		</dict>
-	</array>
-	<key>connectors</key>
-	<dict/>
-	<key>workflowMetaData</key>
-	<dict>
-		<key>folderActionFolderPath</key>
-		<string>/Volumes</string>
-		<key>workflowTypeIdentifier</key>
-		<string>com.apple.Automator.folderAction</string>
-	</dict>
-</dict>
-</plist>
