@@ -45,7 +45,6 @@ on run {input, parameters}
 				end if
 				return
 			else
-				--if isScriptMounting is false then
 				-- Volume is already in fstab, so we just open volumes folder and volumes/lastVolumeAdded folder to get the back button of finder enabled to go back to Volume
 				tell application "Finder"
 					delay 0.5
@@ -54,9 +53,6 @@ on run {input, parameters}
 					activate
 					set target of front window to ("/Volumes/" & lastVolumeAdded as POSIX file)
 				end tell
-				--else
-				--	set isScriptMounting to false
-				--end if
 				return
 				
 			end if
