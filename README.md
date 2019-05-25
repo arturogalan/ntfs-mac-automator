@@ -8,9 +8,9 @@ Applescript to easily make writable NTFS volumes in MAC, just download the zippe
 If you want to change the code or the literals, you can [edit the script](https://github.com/arturogalan/ntfs-mac-automator/blob/master/src/NTFS_writable_utility_AppleScript.txt) code and then save it in Automator.
 To do this:
 * Open the automator program in your mac
-* Select a new Folder action automation. 
+* Select a new **Folder action** automation. 
 * Add all the code of the script between the on run {input, parameters} and the end run lines, except the utilities functions that goes on the top.
-* Then select the folder /Volumes as the trigger for this action. 
+* Then select the folder */Volumes* as the trigger for this action. 
 * Make the changes.
 * Save it.
 
