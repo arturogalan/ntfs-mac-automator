@@ -14,4 +14,4 @@ To do this:
 * Make the changes.
 * Save it.
 
-## [More info in Medium.](https://medium.com/@arturo.galan/%EF%B8%8Futility-to-write-on-ntfs-volumes-in-mac-for-free-d2d4ab32b25e, "Read the explanation of the script")
+## [More info in Medium.](https://medium.com/@arturo.galan/%EF%B8%8Futility-to-write-on-ntfs-volumes-in-mac-for-free-d2d4ab32b25e "Read the explanation of the script")
