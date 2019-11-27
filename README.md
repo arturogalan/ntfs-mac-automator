@@ -1,7 +1,7 @@
 # 🧙‍♂️Utility to write in NTFS volumes in MAC for free!
 Applescript to easily make writable NTFS volumes in MAC, just download the zipped file and double click it to install as a ✨**Mac Folder action**✨
 
-## [Download the AppleScript](https://github.com/arturogalan/ntfs-mac-automator/blob/master/NTFS%20writable%20utility.zip) "Download the NTFS utility")
+## [Download the AppleScript](https://github.com/arturogalan/ntfs-mac-automator/raw/master/NTFS%20writable%20utility.zip "Download the NTFS utility")
 
 ![NTFS utility](https://github.com/arturogalan/ntfs-mac-automator/blob/master/images/NTFSUtility1.gif)
 
@@ -14,4 +14,4 @@ To do this:
 * Make the changes.
 * Save it.
 
-## [More info in Medium.](https://medium.com/@arturo.galan/%EF%B8%8Futility-to-write-on-ntfs-volumes-in-mac-for-free-d2d4ab32b25e) "Read the explanation of the script")
+## [More info in Medium.](https://medium.com/@arturo.galan/%EF%B8%8Futility-to-write-on-ntfs-volumes-in-mac-for-free-d2d4ab32b25e "Read the explanation of the script")
