@@ -1,5 +1,5 @@
 # 🧙‍♂️Utility to write in NTFS volumes in MAC for free!
-## As a service (right click in finder over the volume):
+## As a service/quick action (right click in finder over the volume):
 Applescript to make writable NTFS volumes.
 Unzip a double click, accept to install the service.
 Once is installed right click in **Finder** over a selected volume, then in _services_ or _quick actions_ options the utility should appear.
