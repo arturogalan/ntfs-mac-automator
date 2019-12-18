@@ -4,13 +4,13 @@ Applescript to make writable NTFS volumes.
 Unzip a double click, accept to install the service.
 Once is installed right click in **Finder** over a selected volume, then in _services_ or _quick actions_ options the utility should appear.
 
-## [Download the NTFS service](https://github.com/arturogalan/ntfs-mac-automator/raw/master/NTFS%20writable%20utility%20SERVICE.zip "Download the NTFS service")
+## [Download the NTFS service](https://github.com/arturogalan/ntfs-mac-automator/raw/master/NTFS%20writable%20utility%20SERVICE.zip "Download the NTFS service"){:target="_blank"}
 
 
 ## As a folder action (automatic detection of Volumes folder)
 Applescript to easily make writable NTFS volumes in MAC, just download the zipped file and double click it to install as a ✨**Mac Folder action**✨then when a volume is added it should auto-detect it and prompt the user to make it writable
 
-## [Download the NTFS folder action](https://github.com/arturogalan/ntfs-mac-automator/raw/master/NTFS%20writable%20utility%20FOLDER%20ACTION.zip "Download the NTFS folder action")
+## [Download the NTFS folder action](https://github.com/arturogalan/ntfs-mac-automator/raw/master/NTFS%20writable%20utility%20FOLDER%20ACTION.zip "Download the NTFS folder action"){:target="_blank"}
 
 ![NTFS utility](https://github.com/arturogalan/ntfs-mac-automator/blob/master/images/NTFSUtility1.gif)
 
